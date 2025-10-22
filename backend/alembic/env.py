@@ -9,6 +9,7 @@ from app.core.database import Base
 from app.models.user import User
 from app.models.client import Client
 from app.models.document import Document
+from app.models.knowledge_base import KnowledgeBase
 
 # this is the Alembic Config object
 config = context.config

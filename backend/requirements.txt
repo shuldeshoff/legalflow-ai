@@ -27,3 +27,11 @@ langchain==0.1.6
 langchain-openai==0.0.5
 tiktoken==0.5.2
 
+# Vector DB & Embeddings
+chromadb==0.4.22
+sentence-transformers==2.3.1
+
+# Document processing
+PyPDF2==3.0.1
+python-docx==1.1.0
+

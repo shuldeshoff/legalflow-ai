@@ -9,11 +9,10 @@
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-412991.svg)](https://openai.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Demo](https://img.shields.io/badge/Demo-Portfolio-ff69b4.svg)](https://github.com/shuldeshoff/legalflow-ai)
 
 ## 📖 О проекте
 
-**LegalFlow AI** - демонстрационная платформа для автоматизации работы юридических компаний, которая показывает навыки:
+**LegalFlow AI** - современная платформа для автоматизации работы юридических компаний:
 
 **Full-stack разработку** на Python (FastAPI) + React с современной архитектурой
 
@@ -467,8 +466,6 @@ legalflow-ai/
 
 ## 💼 Практическое применение
 
-Этот проект демонстрирует навыки для решения реальных задач:
-
 **Автоматизация рутины** - AI берет на себя 60-70% первичных консультаций
 
 **Квалификация лидов** - чат-бот определяет серьезность запроса и передает качественные лиды
@@ -481,7 +478,7 @@ legalflow-ai/
 
 ## 🤝 Contributing
 
-Проект создан в демонстрационных целях для портфолио.
+Pull requests приветствуются. Для серьезных изменений сначала откройте issue для обсуждения.
 
 ## 📄 Лицензия
 
@@ -489,21 +486,20 @@ MIT License
 
 ## 👨‍💻 Автор
 
-Создано для демонстрации навыков Full-stack разработки с AI/ML.
+**Юрий Шульдешов**
+
+Full-stack разработчик, специализация: Python, AI/ML, LegalTech
 
 **Контакты:**
 - GitHub: [@shuldeshoff](https://github.com/shuldeshoff)
+- Telegram: [@shuldeshoff](https://t.me/shuldeshoff)
 - Repository: [legalflow-ai](https://github.com/shuldeshoff/legalflow-ai)
 
 ---
 
-⭐ **Проект демонстрирует:**
-- Python (FastAPI) + React
-- MySQL + Redis
-- AI/NLP/LLM интеграции
-- REST API разработка
-- CRM и мессенджер интеграции
-- Production-ready код
-- Современные best practices
-
-**Идеально подходит для вакансий Full-stack/Backend Python разработчика с AI/ML.**
+⭐ **Технологии:**
+- Backend: Python (FastAPI) + React
+- Database: MySQL + Redis
+- AI/ML: OpenAI GPT-4, LangChain, RAG
+- Integrations: CRM, Messengers, Payments
+- Infrastructure: Docker, Nginx, CI/CD

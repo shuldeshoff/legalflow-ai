@@ -1,7 +1,8 @@
-# 🛠️ Технологический стек LegalTech AI Platform
+# 🛠️ Технологический стек LegalFlow AI
 
 **Дата:** 22 октября 2025  
-**Проект:** LegalTech AI Platform
+**Проект:** LegalFlow AI  
+**Автор:** Юрий Шульдешов
 
 ## Обзор
 

@@ -141,14 +141,14 @@ gpt-4
 rag
 nlp
 legal-tech
+legaltech
 crm-integration
 telegram-bot
 document-analysis
 fullstack
 asyncio
 sqlalchemy
-portfolio
-demo-project
+automation
 ```
 
 ## Рекомендации

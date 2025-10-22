@@ -1,0 +1,94 @@
+# Dependencies
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+.eggs/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production
+.env.production.local
+
+# Testing
+coverage/
+*.lcov
+.nyc_output
+.pytest_cache/
+htmlcov/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.egg
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pip-log.txt
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Database
+*.sqlite
+*.db
+*.db-journal
+
+# Docker
+.docker/
+
+# Misc
+.turbo
+.cache
+temp/
+tmp/
+*.tsbuildinfo
+.eslintcache
+
+# Uploaded files (for dev)
+uploads/
+media/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Vector DB
+chroma_data/
+

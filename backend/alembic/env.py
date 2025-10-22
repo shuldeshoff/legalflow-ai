@@ -10,6 +10,7 @@ from app.models.user import User
 from app.models.client import Client
 from app.models.document import Document
 from app.models.knowledge_base import KnowledgeBase
+from app.models.integration import Integration, IntegrationLog, TelegramChat, Payment
 
 # this is the Alembic Config object
 config = context.config

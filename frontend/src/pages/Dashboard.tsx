@@ -42,12 +42,18 @@ export const DashboardPage: React.FC = () => {
             </p>
             
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="border rounded-lg p-4">
+              <a
+                href="/chat"
+                className="border rounded-lg p-4 hover:shadow-lg transition cursor-pointer"
+              >
                 <h3 className="font-semibold mb-2">🤖 AI Консультант</h3>
                 <p className="text-sm text-gray-600">
                   Умный чат-бот для консультаций клиентов
                 </p>
-              </div>
+                <span className="text-xs text-blue-600 mt-2 inline-block">
+                  Открыть чат →
+                </span>
+              </a>
               
               <div className="border rounded-lg p-4">
                 <h3 className="font-semibold mb-2">📄 Анализ документов</h3>

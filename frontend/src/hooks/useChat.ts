@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { llmApi, ChatMessage, ChatRequest } from '../services/llm'
+import { llmApi, ChatRequest } from '../services/llm'
 
 export const useStreamingChat = () => {
   const [streamingContent, setStreamingContent] = useState('')

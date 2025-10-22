@@ -31,20 +31,6 @@ export const llmApi = {
     return response.data
   },
   
-  streamChat: (request: ChatRequest): EventSource => {
-    const token = localStorage.getItem('access_token')
-    const url = new URL('/api/v1/llm/chat/stream', window.location.origin)
-    
-    // For EventSource, we need to pass data via URL params or use a different approach
-    // We'll use fetch with ReadableStream instead
-    return new EventSource(url.toString(), {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-  },
-  
   getModels: async () => {
     const response = await api.get('/llm/models')
     return response.data

@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     YANDEX_GPT_API_KEY: str = ""
     YANDEX_FOLDER_ID: str = ""
     
+    # Integrations
+    TELEGRAM_BOT_TOKEN: str = ""
+    YOOKASSA_SHOP_ID: str = ""
+    YOOKASSA_SECRET_KEY: str = ""
+    
     class Config:
         env_file = ".env"
         case_sensitive = True

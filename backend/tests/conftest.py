@@ -1,9 +1,10 @@
 import pytest
-from fastapi.testclient import TestClient
+import pytest_asyncio
+from httpx import AsyncClient
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 from app.main import app
-from app.core.database import Base
+from app.core.database import Base, get_db
 from app.core.config import settings
 
 # Import all models to ensure they're registered
@@ -22,16 +23,18 @@ engine = create_engine(
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-@pytest.fixture(scope="session")
-def db_engine():
+@pytest.fixture(scope="session", autouse=True)
+def setup_test_database():
+    """Setup test database once for all tests"""
     Base.metadata.create_all(bind=engine)
-    yield engine
+    yield
     Base.metadata.drop_all(bind=engine)
 
 
 @pytest.fixture(scope="function")
-def db(db_engine):
-    connection = db_engine.connect()
+def db():
+    """Create a new database session for each test"""
+    connection = engine.connect()
     transaction = connection.begin()
     session = TestingSessionLocal(bind=connection)
     
@@ -43,7 +46,7 @@ def db(db_engine):
 
 
 def override_get_db():
-    """Override for sync database session"""
+    """Override database dependency"""
     try:
         db = TestingSessionLocal()
         yield db
@@ -51,26 +54,41 @@ def override_get_db():
         db.close()
 
 
-@pytest.fixture(scope="function")
-def client(db):
-    from app.core.database import get_db
-    
+@pytest_asyncio.fixture
+async def client(db):
+    """Async HTTP client for testing"""
     app.dependency_overrides[get_db] = override_get_db
-    with TestClient(app) as test_client:
-        yield test_client
+    
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        yield ac
+    
     app.dependency_overrides.clear()
 
 
 @pytest.fixture
 def test_user(db):
-    from app.models.user import User
+    """Create a test user"""
     from app.core.security import get_password_hash
+    
+    # Get the actual User model to check its fields
+    from sqlalchemy import inspect
+    from app.models.user import User
+    
+    mapper = inspect(User)
+    columns = [col.key for col in mapper.columns]
     
     user = User(
         email="test@example.com",
-        hashed_password=get_password_hash("testpassword123"),
-        is_active=True
+        is_active=True,
+        full_name="Test User"  # full_name is required
     )
+    
+    # Set password field based on actual model
+    if 'hashed_password' in columns:
+        user.hashed_password = get_password_hash("testpassword123")
+    elif 'password_hash' in columns:
+        user.password_hash = get_password_hash("testpassword123")
+    
     db.add(user)
     db.commit()
     db.refresh(user)
@@ -79,6 +97,7 @@ def test_user(db):
 
 @pytest.fixture
 def auth_headers(test_user):
+    """Create auth headers with JWT token"""
     from app.core.security import create_access_token
     
     token = create_access_token({"sub": str(test_user.id)})

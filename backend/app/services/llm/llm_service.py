@@ -119,6 +119,25 @@ class LLMService:
         """Count tokens for text"""
         provider = self._get_provider(model)
         return provider.count_tokens(text)
+    
+    def get_models(self):
+        """Get list of available models"""
+        models = []
+        
+        # OpenAI models
+        models.extend([
+            {"id": "gpt-4-turbo-preview", "name": "GPT-4 Turbo", "provider": "openai"},
+            {"id": "gpt-4", "name": "GPT-4", "provider": "openai"},
+            {"id": "gpt-3.5-turbo", "name": "GPT-3.5 Turbo", "provider": "openai"},
+        ])
+        
+        # Yandex models
+        models.extend([
+            {"id": "yandexgpt", "name": "YandexGPT", "provider": "yandex"},
+            {"id": "yandexgpt-lite", "name": "YandexGPT Lite", "provider": "yandex"},
+        ])
+        
+        return {"models": models}
 
 
 # Global service instance

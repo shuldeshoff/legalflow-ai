@@ -1,10 +1,17 @@
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from app.main import app
-from app.core.database import Base, get_db
+from app.core.database import Base
 from app.core.config import settings
+
+# Import all models to ensure they're registered
+from app.models.user import User
+from app.models.client import Client
+from app.models.document import Document
+from app.models.knowledge_base import KnowledgeBase
+from app.models.integration import Integration, IntegrationLog, TelegramChat, Payment
 
 # Test database
 SQLALCHEMY_TEST_DATABASE_URL = "sqlite:///./test.db"
@@ -35,13 +42,18 @@ def db(db_engine):
     connection.close()
 
 
+def override_get_db():
+    """Override for sync database session"""
+    try:
+        db = TestingSessionLocal()
+        yield db
+    finally:
+        db.close()
+
+
 @pytest.fixture(scope="function")
 def client(db):
-    def override_get_db():
-        try:
-            yield db
-        finally:
-            pass
+    from app.core.database import get_db
     
     app.dependency_overrides[get_db] = override_get_db
     with TestClient(app) as test_client:
@@ -66,9 +78,8 @@ def test_user(db):
 
 
 @pytest.fixture
-def auth_headers(client, test_user):
+def auth_headers(test_user):
     from app.core.security import create_access_token
     
     token = create_access_token({"sub": str(test_user.id)})
     return {"Authorization": f"Bearer {token}"}
-

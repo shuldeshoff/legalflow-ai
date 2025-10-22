@@ -12,11 +12,10 @@ class VectorStore:
     """ChromaDB vector store for semantic search"""
     
     def __init__(self):
-        # Initialize ChromaDB client
-        self.client = chromadb.Client(Settings(
-            chroma_db_impl="duckdb+parquet",
-            persist_directory="./chroma_data"
-        ))
+        # Initialize ChromaDB client with new API
+        self.client = chromadb.PersistentClient(
+            path="./chroma_data"
+        )
         
         # Get or create collection
         self.collection = self.client.get_or_create_collection(

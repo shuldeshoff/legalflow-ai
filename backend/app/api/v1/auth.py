@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.core.security import verify_password, get_password_hash, create_access_token, create_refresh_token
 from app.models.user import User
 from app.schemas.user import UserCreate, UserLogin, UserResponse, TokenResponse
+from app.api.deps import get_current_user
 
 router = APIRouter()
 
@@ -75,7 +76,4 @@ async def get_current_user_info(
 ):
     """Get current user info"""
     return current_user
-
-
-from app.api.deps import get_current_user
 

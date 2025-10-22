@@ -77,7 +77,7 @@ class Payment(Base):
     
     # Metadata
     description = Column(Text)
-    metadata = Column(JSON)
+    payment_metadata = Column(JSON)  # Renamed from metadata to avoid SQLAlchemy conflict
     
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
